@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>NPVT → V2Ray/Xray Converter</title>
+  <meta name="description" content="Client-side NPVT1/NPVTSUB1 decoder and V2Ray/Xray config extractor.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="badge">100% client-side</div>
+      <h1>NPVT → V2Ray / Xray</h1>
+      <p>
+        Drop an <code>.npvt</code> / <code>.npv</code> file. The page decrypts it in your browser,
+        extracts embedded V2Ray/Xray JSON, and generates import links when possible.
+      </p>
+    </header>
+
+    <section class="panel">
+      <label id="dropZone" class="drop-zone" for="fileInput">
+        <input id="fileInput" type="file" accept=".npvt,.npv,.txt,application/octet-stream,text/plain">
+        <span class="drop-title">Choose or drop an NPVT file</span>
+        <span class="drop-subtitle">NPVT1 and NPVTSUB1 are supported</span>
+      </label>
+
+      <div class="or">or paste the raw file text</div>
+      <textarea id="rawInput" spellcheck="false" placeholder="NPVT1&#10;..."></textarea>
+
+      <div class="actions">
+        <button id="convertBtn" class="primary">Decrypt & Convert</button>
+        <button id="clearBtn" class="secondary">Clear</button>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="results-head">
+        <div>
+          <h2>Recovered configs</h2>
+          <p id="summary"></p>
+        </div>
+        <div class="actions compact">
+          <button id="copyAllBtn" class="secondary">Copy all links</button>
+          <button id="downloadAllBtn" class="secondary">Download all links</button>
+          <button id="downloadDecryptedBtn" class="secondary">Download decrypted JSON</button>
+        </div>
+      </div>
+      <div id="cards"></div>
+    </section>
+
+    <footer>
+      <p>
+        Files are processed locally; this page has no upload endpoint.
+        Use only with configurations you are authorized to recover.
+      </p>
+      <p class="small">
+        NPVT decryption routine adapted from the MIT-licensed
+        <a href="https://github.com/ENIGMATIC-MAN/DECRYPTION_SCRIPTS" target="_blank" rel="noreferrer">DECRYPTION_SCRIPTS</a>
+        project.
+      </p>
+    </footer>
+  </main>
+
+  <script src="whitebox-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
